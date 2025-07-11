@@ -1,0 +1,10 @@
+// Carbon Design System core and theme
+@use '@carbon/react/scss/themes' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/colors' as *;
+@use '@carbon/react/scss/components' as *;
+
+// Custom global styles (keep minimal)
+body {
+  font-family: 'IBM Plex Sans', Arial, sans-serif;
+} 
