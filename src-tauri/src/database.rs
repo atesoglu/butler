@@ -2,7 +2,8 @@ use rusqlite::{Connection, Result};
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 use tauri::AppHandle;
-use crate::logger::{log_info, log_error, log_debug, log_warn, log_info_with_props, log_error_with_exception};
+use tauri::Manager;
+// macros are available globally, no need to import
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Settings {
@@ -53,7 +54,7 @@ impl Database {
         log_info!("Initializing database connection");
         
         let app_dir = app_handle
-            .path_resolver()
+            .path()
             .app_data_dir()
             .expect("Failed to get app data directory");
         

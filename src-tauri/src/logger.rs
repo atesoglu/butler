@@ -1,8 +1,8 @@
 use chrono::{DateTime, Utc};
-use log::{Level, LevelFilter, Log, Metadata, Record};
+use log::{LevelFilter, Log, Metadata, Record};
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, VecDeque};
-use std::fs::{File, OpenOptions};
+use std::fs::OpenOptions;
 use std::io::{self, Write};
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
@@ -262,7 +262,7 @@ impl StructuredLogger {
             std::fs::create_dir_all(parent)?;
         }
 
-        let file = OpenOptions::new()
+        let mut file = OpenOptions::new()
             .create(true)
             .append(true)
             .open(log_file)?;
@@ -311,42 +311,6 @@ impl Log for StructuredLogger {
 }
 
 // Convenience macros for structured logging
-#[macro_export]
-macro_rules! log_info {
-    ($($arg:tt)*) => {
-        log::info!($($arg)*)
-    };
-}
-
-#[macro_export]
-macro_rules! log_warn {
-    ($($arg:tt)*) => {
-        log::warn!($($arg)*)
-    };
-}
-
-#[macro_export]
-macro_rules! log_error {
-    ($($arg:tt)*) => {
-        log::error!($($arg)*)
-    };
-}
-
-#[macro_export]
-macro_rules! log_debug {
-    ($($arg:tt)*) => {
-        log::debug!($($arg)*)
-    };
-}
-
-#[macro_export]
-macro_rules! log_trace {
-    ($($arg:tt)*) => {
-        log::trace!($($arg)*)
-    };
-}
-
-// Structured logging macros with properties
 #[macro_export]
 macro_rules! log_info_with_props {
     ($msg:expr, $($key:expr => $value:expr),*) => {{
