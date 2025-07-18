@@ -1,15 +1,40 @@
 {
   "name": "butler",
+  "description": "A modern Electron desktop application built with React, TypeScript, and Carbon Design System",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "main": "electron-main.cjs",
+  "author": "Butler Team",
+  "license": "MIT",
+  "homepage": "https://github.com/your-org/butler#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/butler.git"
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "typescript",
+    "carbon-design-system",
+    "desktop-app",
+    "vite"
+  ],
   "scripts": {
     "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "build": "vite build",
     "electron:build": "electron-builder",
     "start": "electron .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx,scss,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,scss,json}\"",
+    "clean": "rimraf dist node_modules/.vite",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@carbon/icons-react": "^11.62.0",
@@ -38,10 +63,16 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "jsdom": "^26.1.0",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4",
     "vitest": "^3.2.4",
     "wait-on": "^8.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
